@@ -1,9 +1,15 @@
 # Laravel 5 Shopping Cart
-[![Build Status](https://travis-ci.org/darryldecode/laravelshoppingcart.svg?branch=master)](https://travis-ci.org/darryldecode/laravelshoppingcart)
-[![Total Downloads](https://poser.pugx.org/darryldecode/cart/d/total.svg)](https://packagist.org/packages/darryldecode/cart)
-[![License](https://poser.pugx.org/darryldecode/cart/license.svg)](https://packagist.org/packages/darryldecode/cart)
 
-A Shopping Cart Implementation for Laravel Framework
+A Shopping Cart Implementation for Laravel Framework v5.x
+
+
+##IMPORTANT INFO
+
+This is a fork of the fantastic [Laravel Shopping Cart](https://github.com/darryldecode/laravelshoppingcart) of Darryl Fernandez.
+Since the project wasn't maintained very actively any more the fork was done to make it Laravel v5.4 compatible and still offer it to the public.
+No blame to Darryl though (we all have a private life which comes first) but kudos for his great effort to get this cart done.
+
+
 
 ##INSTALLATION
 
@@ -13,8 +19,8 @@ Install the package through [Composer](http://getcomposer.org/). Edit your proje
 
 ```php
 "require": {
-	"laravel/framework": "5.0.*",
-	"darryldecode/cart": "dev-master"
+	"laravel/framework": "5.*",
+	"frezno/cart": "dev-master"
 }
 ```
 
@@ -24,19 +30,19 @@ Next, run the Composer update command from the Terminal:
 
     or
 
-    composer update "darryldecode/cart"
+    composer update "frezno/cart"
 
 ##CONFIGURATION
 
 1. Open config/app.php and addd this line to your Service Providers Array
   ```php
-  'Darryldecode\Cart\CartServiceProvider'
+  'Frezno\Cart\CartServiceProvider'
   ```
 
 2. Open config/app.php and addd this line to your Aliases
 
 ```php
-  'Cart' => 'Darryldecode\Cart\Facades\CartFacade'
+  'Cart' => 'Frezno\Cart\Facades\CartFacade'
   ```
 
 ## HOW TO USE
@@ -292,7 +298,7 @@ Also, when adding conditions, the 'value' field will be the bases of calculation
 ```php
 
 // add single condition on a cart bases
-$condition = new \Darryldecode\Cart\CartCondition(array(
+$condition = new \Frezno\Cart\CartCondition(array(
     'name' => 'VAT 12.5%',
     'type' => 'tax',
     'target' => 'subtotal',
@@ -306,14 +312,14 @@ $condition = new \Darryldecode\Cart\CartCondition(array(
 Cart::condition($condition);
 
 // or add multiple conditions from different condition instances
-$condition1 = new \Darryldecode\Cart\CartCondition(array(
+$condition1 = new \Frezno\Cart\CartCondition(array(
     'name' => 'VAT 12.5%',
     'type' => 'tax',
     'target' => 'subtotal',
     'value' => '12.5%',
     'order' => 2
 ));
-$condition2 = new \Darryldecode\Cart\CartCondition(array(
+$condition2 = new \Frezno\Cart\CartCondition(array(
     'name' => 'Express Shipping $15',
     'type' => 'shipping',
     'target' => 'subtotal',
@@ -324,7 +330,7 @@ Cart::condition($condition1);
 Cart::condition($condition2);
 
 // The property 'Order' lets you add different conditions through for example a shopping process with multiple
-// pages and still be able to set an order to apply the conditions. If no order is defined defaults to 0 
+// pages and still be able to set an order to apply the conditions. If no order is defined defaults to 0
 
 // or add multiple conditions as array
 Cart::condition([$condition1, $condition2]);
@@ -373,7 +379,7 @@ Now let's add condition on an item.
 ```php
 
 // lets create first our condition instance
-$saleCondition = new \Darryldecode\Cart\CartCondition(array(
+$saleCondition = new \Frezno\Cart\CartCondition(array(
             'name' => 'SALE 5%',
             'type' => 'tax',
             'target' => 'item',
@@ -394,7 +400,7 @@ $product = array(
 Cart::add($product);
 
 // you may also add multiple condition on an item
-$itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
+$itemCondition1 = new \Frezno\Cart\CartCondition(array(
     'name' => 'SALE 5%',
     'type' => 'sale',
     'target' => 'item',
@@ -406,7 +412,7 @@ $itemCondition2 = new CartCondition(array(
     'target' => 'item',
     'value' => '-25',
 ));
-$itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+$itemCondition3 = new \Frezno\Cart\CartCondition(array(
     'name' => 'MISC',
     'type' => 'misc',
     'target' => 'item',
@@ -460,7 +466,9 @@ Clearing Cart Conditions: **Cart::clearCartConditions()**
 *
 * @return void
 */
-Cart::clearCartConditions()
+Cart::clearCartCond
+
+itions()
 ```
 
 Remove Specific Cart Condition: **Cart::removeCartCondition($conditionName)**
@@ -530,7 +538,7 @@ public function removeConditionsByType($type)
 
 ## Items
 
-The method **Cart::getContent()** returns a collection of items. 
+The method **Cart::getContent()** returns a collection of items.
 
 To get the id of an item, use the property **$item->id**.
 
@@ -542,7 +550,7 @@ To get the attributes of an item, use the property **$item->attributes**.
 
 To get the price of a single item without the conditions applied, use the property **$item->price**.
 
-To get the subtotal of an item without the conditions applied, use the method **$item->getPriceSum()**. 
+To get the subtotal of an item without the conditions applied, use the method **$item->getPriceSum()**.
 ```php
 /**
 * get the sum of price
@@ -553,7 +561,7 @@ public function getPriceSum()
 
 ```
 
-To get the price of a single item without the conditions applied, use the method 
+To get the price of a single item without the conditions applied, use the method
 
 **$item->getPriceWithConditions()**.
 ```php
@@ -562,11 +570,11 @@ To get the price of a single item without the conditions applied, use the method
 *
 * @return mixed|null
 */
-public function getPriceWithConditions() 
+public function getPriceWithConditions()
 
 ```
 
-To get the subtotal of an item with the conditions applied, use the method 
+To get the subtotal of an item with the conditions applied, use the method
 
 **$item->getPriceSumWithConditions()**
 ```php
@@ -579,7 +587,7 @@ public function getPriceSumWithConditions()
 
 ```
 
-**NOTE**: When you get price with conditions applied, only the conditions assigned to the current item will be calculated. 
+**NOTE**: When you get price with conditions applied, only the conditions assigned to the current item will be calculated.
 Cart conditions won't be applied to price.
 
 ## Instances
@@ -649,7 +657,7 @@ The options you have are:
 * decimals or env('SHOPPING_DECIMALS', 0) => Number of decimals you want to show. Defaults to 0.
 * dec_point or env('SHOPPING_DEC_POINT', '.') => Decimal point type. Defaults to a '.'.
 * thousands_sep or env('SHOPPING_THOUSANDS_SEP', ',') => Thousands separator for value. Defaults to ','.
- 
+
 ## Examples
 
 ```php
@@ -716,7 +724,9 @@ $items->each(function($item)
 
     if( $item->attributes->has('size') )
     {
-        // item has attribute size
+        // item has attr
+
+        ibute size
     }
     else
     {
@@ -728,36 +738,8 @@ $items->each(function($item)
 
 ## Changelogs
 
-**2.4.0
-- added new method on a condition: $condition->getAttributes(); (Please see [Conditions](#conditions) section)
+Started at vefrsion **2.4.0 when forked.
 
-**2.3.0
-- added new Cart Method: Cart::addItemCondition($productId, $itemCondition)
-- added new Cart Method: Cart::getTotalQuantity()
-
-**2.2.1
-- bug fixes
-
-**2.2.0
-- added new Cart Method: Cart::getConditionsByType($type)
-- added new Item Method: Cart::removeConditionsByType($type)
-
-**2.1.1
-- when a new product with the same ID is added on a cart and a quantity is provided, it will increment its current quantity instead of overwriting it. There's a chance that you will also need to update an item's quantity but not incrementing it but reducing it, please just see the documentation (Please see Cart::update() section, and read carefully)
-
-**2.1.0
-- added new Cart Method: getCalculatedValue($totalOrSubTotalOrPrice)
-- added new Item Method: getPriceSum()
-
-**2.0.0 (breaking change)
-- major changes in dealing with conditions (Please see [Conditions](#conditions) section, and read carefully)
-- All conditions added on per item bases should have now target => 'item' instead of 'subtotal'
-- All conditions added on per cart bases should have now target => 'subtotal' instead of 'total'
-
-**1.1.0
-- added new method: clearCartConditions()
-- added new method: removeItemCondition($itemId, $conditionName)
-- added new method: removeCartCondition($conditionName)
 
 ## License
 
