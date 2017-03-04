@@ -35,14 +35,27 @@ Next, run the Composer update command from the Terminal:
 ##CONFIGURATION
 
 1. Open config/app.php and addd this line to your Service Providers Array
+
+  Laravel v5.0 (PHP 5.4):
   ```php
-  'Frezno\Cart\CartServiceProvider'
+  'Frezno\Cart\CartServiceProvider',
+  ```
+
+  Laravel 5.1 and higher:
+  ```php
+  Frezno\Cart\CartServiceProvider::class,
   ```
 
 2. Open config/app.php and addd this line to your Aliases
 
-```php
-  'Cart' => 'Frezno\Cart\Facades\CartFacade'
+  Laravel v5.0 (PHP 5.4):
+  ```php
+  'Cart' => 'Frezno\Cart\Facades\CartFacade',
+  ```
+
+  Laravel 5.1 and higher:
+  ```php
+  'Cart' => Frezno\Cart\Facades\CartFacade::class,
   ```
 
 ## HOW TO USE
