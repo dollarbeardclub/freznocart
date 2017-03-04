@@ -34,7 +34,7 @@ class CartServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'shopping_cart');
 
-        $this->app['cart'] = $this->app->share(function ($app) {
+        $this->app->singleton('cart', function($app) {
             $storage = $app['session'];
             $events = $app['events'];
             $instanceName = 'cart';
