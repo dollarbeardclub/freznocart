@@ -1,19 +1,19 @@
 {
-    "name": "darryldecode/cart",
-    "description": "Laravel 5 Shopping cart",
-    "keywords": ["laravel", "shopping cart", "cart"],
+    "name": "frezno/cart",
+    "description": "Laravel 5 Shopping Cart",
+    "keywords": ["laravel", "shopping cart", "cart", "ecommerce"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Darryl Fernandez",
-            "email": "engrdarrylfernandez@gmail.com"
+            "name": "frezno, Darryl Fernandez",
+            "email": "cart@frezno.de"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*",
-        "illuminate/validation": "5.0.*|5.1.*|5.2.*|5.3.*",
-        "illuminate/translation": "5.0.*|5.1.*|5.2.*|5.3.*"
+        "illuminate/support": "5.*",
+        "illuminate/validation": "5.*",
+        "illuminate/translation": "5.*"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Darryldecode\\": "src/Darryldecode"
+            "Frezno\\": "src/Frezno"
         }
     },
     "minimum-stability": "dev"
