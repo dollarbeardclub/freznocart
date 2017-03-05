@@ -1,12 +1,12 @@
 # Laravel 5 Shopping Cart
 
-A Shopping Cart Implementation for Laravel Framework v5.x
+A Shopping Cart Implementation for Laravel Framework 5.x
 
 
 ##IMPORTANT INFO
 
-This is a fork of the fantastic [Laravel Shopping Cart](https://github.com/darryldecode/laravelshoppingcart) of Darryl Fernandez.
-Since the project wasn't maintained very actively any more the fork was done to make it Laravel v5.4 compatible and still offer it to the public.
+This is a fork of the fantastic [Laravel Shopping Cart](https://github.com/darryldecode/laravelshoppingcart) of Darryl Fernandez.  
+Since the project wasn't maintained very actively any more the fork was done to make it Laravel v5.4 compatible and still offer it to the public.  
 No blame to Darryl though (we all have a private life which comes first) but kudos for his great effort to get this cart done.
 
 
@@ -34,9 +34,9 @@ Next, run the Composer update command from the Terminal:
 
 ##CONFIGURATION
 
-1. Open config/app.php and addd this line to your Service Providers Array
+1. Open config/app.php and add this line to your Service Providers Array
 
-  Laravel v5.0 (PHP 5.4):
+  Laravel 5.0 (PHP 5.4):
   ```php
   'Frezno\Cart\CartServiceProvider',
   ```
@@ -46,9 +46,9 @@ Next, run the Composer update command from the Terminal:
   Frezno\Cart\CartServiceProvider::class,
   ```
 
-2. Open config/app.php and addd this line to your Aliases
+2. Open config/app.php and add this line to your Aliases
 
-  Laravel v5.0 (PHP 5.4):
+  Laravel 5.0 (PHP 5.4):
   ```php
   'Cart' => 'Frezno\Cart\Facades\CartFacade',
   ```
@@ -288,7 +288,7 @@ Cart::clear();
 ## Conditions
 
 Laravel Shopping Cart supports cart conditions.
-Conditions are very useful in terms of (coupons,discounts,sale,per-item sale and discounts etc.)
+Conditions are very useful in terms of eg coupons, discounts, sale, per-item sale and discounts etc.
 See below carefully on how to use conditions.
 
 Conditions can be added on:
@@ -299,7 +299,7 @@ Conditions can be added on:
 
 First let's add a condition on a Cart Bases:
 
-There are also several ways of adding a condition on a cart:
+There are also several ways of adding a condition on a cart.  
 NOTE:
 
 When adding a condition on a cart bases, the 'target' should have value of 'subtotal'.
@@ -332,6 +332,7 @@ $condition1 = new \Frezno\Cart\CartCondition(array(
     'value' => '12.5%',
     'order' => 2
 ));
+
 $condition2 = new \Frezno\Cart\CartCondition(array(
     'name' => 'Express Shipping $15',
     'type' => 'shipping',
@@ -339,6 +340,7 @@ $condition2 = new \Frezno\Cart\CartCondition(array(
     'value' => '+15',
     'order' => 1
 ));
+
 Cart::condition($condition1);
 Cart::condition($condition2);
 
@@ -376,7 +378,7 @@ $conditionCalculatedValue = $condition->getCalculatedValue($subTotal);
 
 NOTE: All cart based conditions should be applied before calling **Cart::getTotal()**
 
-Then Finally you can call **Cart::getTotal()** to get the Cart Total with the applied conditions.
+Then finally you can call **Cart::getTotal()** to get the Cart Total with the applied conditions.
 ```php
 $cartTotal = Cart::getTotal(); // the total will be calculated based on the conditions you ave provided
 ```
@@ -419,12 +421,14 @@ $itemCondition1 = new \Frezno\Cart\CartCondition(array(
     'target' => 'item',
     'value' => '-5%',
 ));
+
 $itemCondition2 = new CartCondition(array(
     'name' => 'Item Gift Pack 25.00',
     'type' => 'promo',
     'target' => 'item',
     'value' => '-25',
 ));
+
 $itemCondition3 = new \Frezno\Cart\CartCondition(array(
     'name' => 'MISC',
     'type' => 'misc',
@@ -446,7 +450,7 @@ Cart::add($item);
 
 NOTE: All cart per-item conditions should be applied before calling **Cart::getSubTotal()**
 
-Then Finally you can call **Cart::getSubTotal()** to get the Cart sub total with the applied conditions.
+Then finally you can call **Cart::getSubTotal()** to get the Cart sub total with the applied conditions.
 ```php
 $cartSubTotal = Cart::getSubTotal(); // the subtotal will be calculated based on the conditions you have provided
 ```
@@ -479,9 +483,7 @@ Clearing Cart Conditions: **Cart::clearCartConditions()**
 *
 * @return void
 */
-Cart::clearCartCond
-
-itions()
+Cart::clearCartConditions()
 ```
 
 Remove Specific Cart Condition: **Cart::removeCartCondition($conditionName)**
@@ -611,26 +613,26 @@ To do that,
 Create a new Service Provider and then on register() method, you can put this like so:
 ```php
 $this->app['wishlist'] = $this->app->share(function($app)
-		{
-			$storage = $app['session']; // laravel session storage
-			$events = $app['events']; // laravel event handler
-			$instanceName = 'wishlist'; // your cart instance name
-			$session_key = 'AsASDMCks0ks1'; // your unique session key to hold cart items
+{
+	$storage = $app['session']; // laravel session storage
+		$events = $app['events']; // laravel event handler
+		$instanceName = 'wishlist'; // your cart instance name
+		$session_key = 'AsASDMCks0ks1'; // your unique session key to hold cart items
 
-			return new Cart(
-				$storage,
-				$events,
-				$instanceName,
-				$session_key
-			);
-		});
+	return new Cart(
+		$storage,
+		$events,
+		$instanceName,
+		$session_key
+	);
+});
 ```
 
 ## Exceptions
 
 There are currently only two exceptions.
 
-| Exception                             | Description                                                                           |
+| Exception                             | Description                                                                       |
 | ------------------------------------- | --------------------------------------------------------------------------------- |
 | *InvalidConditionException*           | When there is an invalid field value during instantiating a new Condition         |
 | *InvalidItemException*                | When a new product has invalid field values (id,name,price,quantity)              |
@@ -751,7 +753,7 @@ $items->each(function($item)
 
 ## Changelogs
 
-Started at vefrsion **2.4.0 when forked.
+Started at Darryls version **2.4.0 when forked.
 
 
 ## License
