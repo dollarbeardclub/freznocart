@@ -1,11 +1,15 @@
 {
     "name": "frezno/cart",
     "description": "Laravel 5 Shopping Cart",
-    "keywords": ["laravel", "shopping cart", "cart", "ecommerce"],
+    "keywords": ["laravel", "shopping cart", "cart"],
     "license": "MIT",
     "authors": [
         {
-            "name": "frezno, Darryl Fernandez",
+            "name": "Darryl Fernandez",
+            "email": "engrdarrylfernandez@gmail.com"
+        },
+        {
+            "name": "frezno",
             "email": "cart@frezno.de"
         }
     ],
@@ -25,5 +29,9 @@
             "Frezno\\": "src/Frezno"
         }
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.5-dev"
+        }
+    }
 }

@@ -13,24 +13,10 @@ No blame to Darryl though (we all have a private life which comes first) but kud
 
 ##INSTALLATION
 
-Install the package through [Composer](http://getcomposer.org/). Edit your project's `composer.json` file by adding:
+Install the package with [Composer](http://getcomposer.org/). 
 
-### Laravel 5
+    composer require frezno/cart
 
-```php
-"require": {
-	"laravel/framework": "5.*",
-	"frezno/cart": "dev-master"
-}
-```
-
-Next, run the Composer update command from the Terminal:
-
-    composer update
-
-    or
-
-    composer update "frezno/cart"
 
 ##CONFIGURATION
 
