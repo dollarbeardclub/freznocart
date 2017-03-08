@@ -1,5 +1,5 @@
 {
-    "name": "frezno/cart",
+    "name": "frezno/freznocart",
     "description": "Laravel 5 Shopping Cart",
     "keywords": ["laravel", "shopping cart", "cart"],
     "license": "MIT",
