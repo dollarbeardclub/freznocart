@@ -15,7 +15,7 @@ No blame to Darryl though (we all have a private life which comes first) but kud
 
 Install the package with [Composer](http://getcomposer.org/). 
 
-    composer require frezno/cart
+    composer require frezno/freznocart
 
 
 ##CONFIGURATION
