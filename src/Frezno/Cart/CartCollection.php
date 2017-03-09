@@ -1,5 +1,4 @@
 <?php
-
 namespace Frezno\Cart;
 
 use Illuminate\Support\Collection;

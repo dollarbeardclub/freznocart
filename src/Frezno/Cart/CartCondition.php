@@ -1,10 +1,9 @@
 <?php
-
 namespace Frezno\Cart;
 
-use Frezno\Cart\Exceptions\InvalidConditionException;
 use Frezno\Cart\Helpers\Helpers;
 use Frezno\Cart\Validators\CartConditionValidator;
+use Frezno\Cart\Exceptions\InvalidConditionException;
 
 class CartCondition
 {
@@ -14,14 +13,17 @@ class CartCondition
     private $args;
 
     /**
-     * The parsed raw value of the condition
+     * The parsed raw value of the condition.
      *
      * @var
      */
     private $parsedRawValue;
 
     /**
+     * CartCondition contructor.
+     *
      * @param array $args (name, type, target, value)
+     *
      * @throws InvalidConditionException
      */
     public function __construct(array $args)
@@ -29,7 +31,7 @@ class CartCondition
         $this->args = $args;
 
         if (Helpers::isMultiArray($args)) {
-            Throw new InvalidConditionException('Multi dimensional array is not supported.');
+            throw new InvalidConditionException('Multi dimensional array is not supported.');
         } else {
             $this->validate($this->args);
         }
@@ -87,11 +89,13 @@ class CartCondition
 
     /**
      * Set the order to apply this condition.
-     * If no argument order is applied we return 0 as
-     * indicator that no assignment has been made.
+     *
+     * If no argument order is applied we return 0 as indicator
+     * that no assignment has been made.
      *
      * @param int $order
-     * @return Integer
+     *
+     * @return int
      */
     public function setOrder($order = 1)
     {
@@ -100,20 +104,22 @@ class CartCondition
 
     /**
      * The order to apply this condition.
-     * If no argument order is applied we return 0 as
-     * indicator that no assignment has been made.
      *
-     * @return Integer
+     * If no argument order is applied we return 0 as indicator
+     * that no assignment has been made.
+     *
+     * @return int
      */
     public function getOrder()
     {
-        return isset($this->args['order']) && is_numeric($this->args['order']) ? (int)$this->args['order'] : 0;
+        return isset($this->args['order']) && is_numeric($this->args['order']) ? (int) $this->args['order'] : 0;
     }
 
     /**
      * Apply condition to total or subtotal.
      *
      * @param $totalOrSubTotalOrPrice
+     *
      * @return float
      */
     public function applyCondition($totalOrSubTotalOrPrice)
@@ -122,9 +128,11 @@ class CartCondition
     }
 
     /**
-     * Get the calculated value of this condition supplied by the subtotal|price.
+     * Get the calculated value of this condition supplied
+     * by the subtotal|price.
      *
      * @param $totalOrSubTotalOrPrice
+     *
      * @return mixed
      */
     public function getCalculatedValue($totalOrSubTotalOrPrice)
@@ -139,17 +147,17 @@ class CartCondition
      *
      * @param $totalOrSubTotalOrPrice
      * @param $conditionValue
+     *
      * @return float
      */
     protected function apply($totalOrSubTotalOrPrice, $conditionValue)
     {
-        // If value has a percentage sign on it, we will get first
-        // its percentage, then we will evaluate again if the value
-        // has a minus or plus sign so we can decide what to do with the
-        // percentage, whether to add or subtract it to the total/subtotal/price.
-        // If we can't find any plus/minus sign, we will assume it as plus sign.
-        if( $this->valueIsPercentage($conditionValue) )
-        {
+        //-- If value has a percentage sign on it, we will get first its percentage,
+        //-- then we will evaluate again if the value  has a minus or plus sign
+        //-- so we can decide what to do with the percentage,
+        //-- whether to add or subtract it to the total/subtotal/price.
+        //-- If we can't find any plus/minus sign, we will assume it as plus sign.
+        if ($this->valueIsPercentage($conditionValue)) {
             if ($this->valueIsToBeSubtracted($conditionValue)) {
                 $value = Helpers::normalizePrice($this->cleanValue($conditionValue));
 
@@ -171,8 +179,9 @@ class CartCondition
             }
         }
 
-        // If the value has no percent sign on it, the operation will not be a percentage.
-        // Next is we will check if it has a minus/plus sign so then we can just deduct it to total/subtotal/price.
+        //-- If the value has no percent sign on it, the operation will not be a percentage.
+        //-- Next is we will check if it has a minus/plus sign
+        //-- so then we can just deduct it to total/subtotal/price.
         else {
             if ($this->valueIsToBeSubtracted($conditionValue)) {
                 $this->parsedRawValue = Helpers::normalizePrice($this->cleanValue($conditionValue));
@@ -189,7 +198,7 @@ class CartCondition
             }
         }
 
-        // Do not allow items with negative prices.
+        //-- Do not allow items with negative prices.
         return $result < 0 ? 0.00 : $result;
     }
 
@@ -197,50 +206,55 @@ class CartCondition
      * Check if value is a percentage.
      *
      * @param $value
+     *
      * @return bool
      */
     protected function valueIsPercentage($value)
     {
-        return (preg_match('/%/', $value) == 1);
+        return preg_match('/%/', $value) == 1;
     }
 
     /**
      * Check if value is a subtract.
      *
      * @param $value
+     *
      * @return bool
      */
     protected function valueIsToBeSubtracted($value)
     {
-        return (preg_match('/\-/', $value) == 1);
+        return preg_match('/\-/', $value) == 1;
     }
 
     /**
      * Check if value is to be added.
      *
      * @param $value
+     *
      * @return bool
      */
     protected function valueIsToBeAdded($value)
     {
-        return (preg_match('/\+/', $value) == 1);
+        return preg_match('/\+/', $value) == 1;
     }
 
     /**
      * Removes some arithmetic signs (%,+,-) only.
      *
      * @param $value
+     *
      * @return mixed
      */
     protected function cleanValue($value)
     {
-        return str_replace(array('%','-','+'),'',$value);
+        return str_replace(array('%', '-', '+'), '', $value);
     }
 
     /**
      * Validates condition arguments.
      *
      * @param $args
+     *
      * @throws InvalidConditionException
      */
     protected function validate($args)

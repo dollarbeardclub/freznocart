@@ -1,5 +1,4 @@
 <?php
-
 namespace Frezno\Cart;
 
 use Illuminate\Support\ServiceProvider;
@@ -27,14 +26,12 @@ class CartServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'shopping_cart');
 
-        $this->app->singleton('cart', function($app) {
+        $this->app->singleton('cart', function ($app) {
             $storage = $app['session'];
             $events = $app['events'];
             $instanceName = 'cart';

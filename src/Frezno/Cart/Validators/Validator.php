@@ -1,11 +1,10 @@
 <?php
+namespace Frezno\Cart\Validators;
 
-namespace Frezno\Cart\Validators;#
-
+use Illuminate\Validation\Factory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\Translator;
-use Illuminate\Validation\Factory;
 
 abstract class Validator
 {
@@ -13,9 +12,9 @@ abstract class Validator
 
     public static function instance()
     {
-        if (! static::$factory) {
+        if (!static::$factory) {
             $loader = new FileLoader(
-                new Filesystem(),'/Translations'
+                new Filesystem(), '/Translations'
             );
 
             $translator = new Translator($loader, 'en');

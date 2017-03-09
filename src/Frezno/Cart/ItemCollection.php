@@ -1,5 +1,4 @@
 <?php
-
 namespace Frezno\Cart;
 
 use Frezno\Cart\Helpers\Helpers;
@@ -35,7 +34,6 @@ class ItemCollection extends Collection
     public function getPriceSum()
     {
         return Helpers::formatValue($this->price * $this->quantity, $this->config['format_numbers'], $this->config);
-
     }
 
     public function __get($name)
@@ -44,7 +42,7 @@ class ItemCollection extends Collection
             return $this->get($name);#
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -54,7 +52,7 @@ class ItemCollection extends Collection
      */
     public function hasConditions()
     {
-        if (! isset($this['conditions'])) {
+        if (!isset($this['conditions'])) {
             return false;
         }
 
@@ -62,7 +60,7 @@ class ItemCollection extends Collection
             return count($this['conditions']) > 0;
         }
 
-        $conditionInstance = "Frezno\\Cart\\CartCondition";
+        $conditionInstance = 'Frezno\\Cart\\CartCondition';
 
         if ($this['conditions'] instanceof $conditionInstance) {
             return true;
@@ -75,6 +73,7 @@ class ItemCollection extends Collection
      * Get the single price in which conditions are already applied.
      *
      * @param bool $formatted
+     *
      * @return mixed|null
      */
     public function getPriceWithConditions($formatted = true)
@@ -89,7 +88,7 @@ class ItemCollection extends Collection
                     if ($condition->getTarget() === 'item') {
                         ($processed > 0) ? $toBeCalculated = $newPrice : $toBeCalculated = $originalPrice;
                         $newPrice = $condition->applyCondition($toBeCalculated);
-                        $processed++;
+                        ++$processed;
                     }
                 }
             } else {
@@ -106,7 +105,9 @@ class ItemCollection extends Collection
 
     /**
      * Get the sum of price in which conditions are already applied.
+     *
      * @param bool $formatted
+     *
      * @return mixed|null
      */
     public function getPriceSumWithConditions($formatted = true)
