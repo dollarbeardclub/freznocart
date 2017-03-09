@@ -1,7 +1,8 @@
 {
     "name": "frezno/freznocart",
     "description": "Laravel 5 Shopping Cart",
-    "keywords": ["laravel", "shopping cart", "cart"],
+    "keywords": ["laravel", "shopping cart", "cart", "ecommerce"],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
