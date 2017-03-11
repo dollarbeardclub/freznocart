@@ -30,9 +30,7 @@
             "Frezno\\": "src/Frezno"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.5-dev"
-        }
+    "config": {
+        "preferred-install": "dist"
     }
 }
