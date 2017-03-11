@@ -30,7 +30,5 @@
             "Frezno\\": "src/Frezno"
         }
     },
-    "config": {
-        "preferred-install": "dist"
-    }
+    "minimum-stability": "dev"
 }
