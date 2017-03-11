@@ -6,9 +6,9 @@ A Shopping Cart Implementation for Laravel Framework 5.x
 ##IMPORTANT INFO
 
 This is a fork of the fantastic [Laravel Shopping Cart](https://github.com/darryldecode/laravelshoppingcart) of Darryl Fernandez.  
-Since the project wasn't maintained very actively any more the fork was done to make it Laravel v5.4 compatible and still offer it to the public.  
-No blame to Darryl though (we all have a private life which comes first) but kudos for his great effort to get this cart done.
-
+The fork was done to make it Laravel v5.4 compatible and still offer it to the public.  
+No blame to Darryl though (we all have a private life which comes first) but kudos for his great effort to get this cart done.  
+Since Darryl is still working on his cart, you may switch over and use his one, or you can stay and see what's going on here.
 
 
 ##INSTALLATION
