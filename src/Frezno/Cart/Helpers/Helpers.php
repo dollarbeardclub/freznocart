@@ -66,7 +66,7 @@ class Helpers
      * Format the price according to the settings in the config file.
      *
      * @param $value  the price
-     * @param bool $format_numbers  using the formatting values or not
+     * @param bool $format_numbers using the formatting values or not
      * @param $config  array values
      *
      * @return mixed
