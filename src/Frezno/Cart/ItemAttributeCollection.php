@@ -17,7 +17,5 @@ class ItemAttributeCollection extends Collection
         if ($this->has($name)) {
             return $this->get($name);
         }
-
-        return;
     }
 }

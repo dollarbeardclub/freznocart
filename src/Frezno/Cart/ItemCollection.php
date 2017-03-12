@@ -39,10 +39,8 @@ class ItemCollection extends Collection
     public function __get($name)
     {
         if ($this->has($name)) {
-            return $this->get($name);#
+            return $this->get($name);
         }
-
-        return;
     }
 
     /**
