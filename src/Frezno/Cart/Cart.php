@@ -1,5 +1,4 @@
 <?php
-
 namespace Frezno\Cart;
 
 use Frezno\Cart\Helpers\Helpers;
@@ -117,11 +116,11 @@ class Cart
      * @param array               $attributes
      * @param CartCondition|array $conditions
      *
-     * @return $this
-     *
      * @throws InvalidItemException
+     *
+     * @return $this
      */
-    public function add($id, $name = null, $price = null, $quantity = null, $attributes = array(), $conditions = array())
+    public function add($id, $name = null, $price = null, $quantity = null, $attributes = [], $conditions = [])
     {
         //-- If the first argument is an array,
         //-- we will need to call add again
@@ -137,8 +136,8 @@ class Cart
                         $item['name'],
                         $item['price'],
                         $item['quantity'],
-                        Helpers::issetAndHasValueOrAssignDefault($item['attributes'], array()),
-                        Helpers::issetAndHasValueOrAssignDefault($item['conditions'], array())
+                        Helpers::issetAndHasValueOrAssignDefault($item['attributes'], []),
+                        Helpers::issetAndHasValueOrAssignDefault($item['conditions'], [])
                     );
                 }
             } else {
@@ -147,8 +146,8 @@ class Cart
                     $id['name'],
                     $id['price'],
                     $id['quantity'],
-                    Helpers::issetAndHasValueOrAssignDefault($id['attributes'], array()),
-                    Helpers::issetAndHasValueOrAssignDefault($id['conditions'], array())
+                    Helpers::issetAndHasValueOrAssignDefault($id['attributes'], []),
+                    Helpers::issetAndHasValueOrAssignDefault($id['conditions'], [])
                 );
             }
 
@@ -156,14 +155,14 @@ class Cart
         }
 
         //-- Validate data.
-        $item = $this->validate(array(
+        $item = $this->validate([
             'id' => $id,
             'name' => $name,
             'price' => Helpers::normalizePrice($price),
             'quantity' => $quantity,
             'attributes' => new ItemAttributeCollection($attributes),
             'conditions' => $conditions,
-        ));
+        ]);
 
         //-- Get the cart.
         $cart = $this->getContent();
@@ -270,9 +269,9 @@ class Cart
                     $itemConditionTempHolder = $itemCondition;
                 }
 
-                $this->update($productId, array(
+                $this->update($productId, [
                     'conditions' => $itemConditionTempHolder, //-- the newly updated conditions
-                ));
+                ]);
             }
         }
 
@@ -316,7 +315,7 @@ class Cart
 
         $this->session->put(
             $this->sessionKeyCartItems,
-            array()
+            []
         );
 
         $this->fireEvent('cleared');
@@ -329,9 +328,9 @@ class Cart
      *
      * @param CartCondition|array $condition
      *
-     * @return $this
-     *
      * @throws InvalidConditionException
+     *
+     * @return $this
      */
     public function condition($condition)
     {
@@ -494,15 +493,15 @@ class Cart
 
                 if ($item['conditions'] instanceof $conditionInstance) {
                     if ($tempConditionsHolder->getName() == $conditionName) {
-                        $item['conditions'] = array();
+                        $item['conditions'] = [];
                     }
                 }
             }
         }
 
-        $this->update($itemId, array(
+        $this->update($itemId, [
             'conditions' => $item['conditions'],
-        ));
+        ]);
 
         return true;
     }
@@ -521,9 +520,9 @@ class Cart
             return false;
         }
 
-        $this->update($itemId, array(
-            'conditions' => array(),
-        ));
+        $this->update($itemId, [
+            'conditions' => [],
+        ]);
 
         return true;
     }
@@ -541,7 +540,7 @@ class Cart
     {
         $this->session->put(
             $this->sessionKeyCartConditions,
-            array()
+            []
         );
     }
 
@@ -588,12 +587,12 @@ class Cart
         }
 
         $conditions->each(function ($cond) use ($subTotal, &$newTotal, &$process) {
-                $toBeCalculated = ($process > 0) ? $newTotal : $subTotal;
+            $toBeCalculated = ($process > 0) ? $newTotal : $subTotal;
 
-                $newTotal = $cond->applyCondition($toBeCalculated);
+            $newTotal = $cond->applyCondition($toBeCalculated);
 
-                ++$process;
-            });
+            ++$process;
+        });
 
         return Helpers::formatValue($newTotal, $this->config['format_numbers'], $this->config);
     }
@@ -645,18 +644,18 @@ class Cart
      *
      * @param $item
      *
-     * @return array $item;
-     *
      * @throws InvalidItemException
+     *
+     * @return array $item;
      */
     protected function validate($item)
     {
-        $rules = array(
+        $rules = [
             'id' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric|min:1',
             'name' => 'required',
-        );
+        ];
 
         $validator = CartItemValidator::make($item, $rules);
 
