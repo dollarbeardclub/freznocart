@@ -20,31 +20,34 @@ Install the package with [Composer](http://getcomposer.org/).
 
 ##CONFIGURATION
 
-1. Open config/app.php and add this line to your Service Providers Array
+Open the **config/app.php** file.
+
+Add this line to your Service **Providers** array:
 
   Laravel 5.0 (PHP 5.4):
   ```php
   'Frezno\Cart\CartServiceProvider',
   ```
 
-  Laravel 5.1 and higher:
+  Laravel 5.1 and higher (PHP >=5.5.9):
   ```php
   Frezno\Cart\CartServiceProvider::class,
   ```
+<br><br>
 
-2. Open config/app.php and add this line to your Aliases
+And somewhat further down, add this line to your Class **Aliases** array:
 
   Laravel 5.0 (PHP 5.4):
   ```php
   'Cart' => 'Frezno\Cart\Facades\CartFacade',
   ```
 
-  Laravel 5.1 and higher:
+  Laravel 5.1 and higher (PHP >=5.5.9):
   ```php
   'Cart' => Frezno\Cart\Facades\CartFacade::class,
   ```
-
-## HOW TO USE
+<br><br>
+## HOW TO USE FreznoCart
 * [Usage](#usage)
 * [Conditions](#conditions)
 * [Items](#items)
