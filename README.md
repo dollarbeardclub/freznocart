@@ -3,7 +3,7 @@
 A Shopping Cart Implementation for Laravel Framework 5.x
 
 
-##IMPORTANT INFO
+## IMPORTANT INFO
 
 This is a fork of the fantastic [Laravel Shopping Cart](https://github.com/darryldecode/laravelshoppingcart) of Darryl Fernandez.  
 The fork was done to make it Laravel v5.4 compatible and still offer it to the public.  
@@ -11,14 +11,14 @@ No blame to Darryl though (we all have a private life which comes first) but kud
 Since Darryl is still working on his cart, you may switch over and use his one, or you can stay and see what's going on here.
 
 
-##INSTALLATION
+## INSTALLATION
 
 Install the package with [Composer](http://getcomposer.org/). 
 
     composer require frezno/freznocart
 
 
-##CONFIGURATION
+## CONFIGURATION
 
 1. Open config/app.php and add this line to your Service Providers Array
 
